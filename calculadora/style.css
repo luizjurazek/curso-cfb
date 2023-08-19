@@ -1,0 +1,96 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    box-sizing: border-box;
+    font-size: large;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.d-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calc {
+    flex-direction: column;
+    width: 230px;
+    padding: 10px;
+    background-color: #eee;
+    border: 3px solid #bbb;
+    border-radius: 8px;
+}
+
+/* Titulo */
+.calc .div_nome {
+    width: 220px;
+}
+
+/* Display */
+.calc .div_display {
+    margin-bottom: 5px;
+}
+
+
+.calc .div_display .display {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    border-radius: 5px;
+    padding: 8px;
+    width: 210px;
+    height: 35px;
+    background-color: #3b3c3f;
+    color: #fff;
+    font-family: monospace;
+    font-size: larger;
+}
+
+/* Teclas */
+.calc .div_teclas {
+    width: 225px;
+    flex-wrap: wrap;
+}
+
+.calc .div_teclas .tecla {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaa;
+    border: 3px solid #888;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 1px;
+}
+.calc .div_teclas .tecla:hover{
+    background-color: rgb(151, 151, 151);
+    border-color: rgb(138, 138, 138);
+}
+
+.calc .div_teclas .tecla-operacao {
+    background-color: rgb(151, 151, 151) !important;
+    border-color: rgb(151, 151, 151) !important;
+}
+
+.calc .div_teclas .tecla-operacao:hover {
+    background-color: rgb(123, 123, 123) !important;
+    border-color: rgb(123, 123, 123) !important;
+}
+
+.calc .div_teclas .tecla-igual {
+    background-color: #AECBFA;
+    border-color: #91a9d0;
+}
+
+.calc .div_teclas .tecla-igual:hover {
+    background-color: #91a9d0 !important; 
+    border-color: #768aab !important;
+}
