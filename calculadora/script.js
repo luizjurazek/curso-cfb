@@ -5,6 +5,7 @@ const teclaOn = document.querySelector("#t-on")
 const teclaClear = document.querySelector("#t-clear")
 const display = document.querySelector("#display")
 const teclaResultado = document.getElementById("tigual")
+const teclaCopy = document.getElementById("t-cpy")
 
 let sinal = false
 let decimal = false
@@ -37,18 +38,22 @@ teclasNum.forEach((el) => {
 
 teclasOp.forEach((el) => {
     el.addEventListener("click", (evt) =>{
-        if(!sinal){
-            sinal = true
-            if(display.innerHTML == "0"){
-                display.innerHTML = ""
-            }
-            if(evt.target.innerHTML == "x"){
-                display.innerHTML += "*"
-            } else {    
-                display.innerHTML += evt.target.innerHTML
-            }
-            
-        }
+        if(!decimal && !sinal){
+                sinal = true
+                decimal = true
+                
+                if(display.innerHTML == "0"){
+                    display.innerHTML = ""
+                }
+                if(evt.target.innerHTML == "x"){
+                    display.innerHTML += "*"
+                } else {    
+                    display.innerHTML += evt.target.innerHTML
+                }
+        } 
+
+
+        
     })
 })
 
@@ -64,6 +69,10 @@ teclaResultado.addEventListener("click", (evt)=> {
     const res =  eval(display.innerHTML)
     console.log(res)
     display.innerHTML = res
+})
+
+teclaCopy.addEventListener("click", (evt)=>{
+    navigator.clipboard.writeText(display.innerHTML)
 })
 
 
