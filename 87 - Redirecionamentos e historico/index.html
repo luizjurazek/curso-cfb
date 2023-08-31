@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+
+        input, button {
+            margin-bottom: 10px;
+        }
+
+        input[type=url]{
+            border: 1px solid #000;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #eee;
+            padding: 5px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="url" name="url" id="id" 
+        placeholder="https://cfbcursos.com.br" 
+        pattern="https://.*" size="30" required>
+        <button id="btn_url">Ir</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
