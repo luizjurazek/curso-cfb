@@ -1,0 +1,29 @@
+1 - Encontrar um elemento específico:
+Dado um array de números, use o método find() para encontrar o primeiro número que seja maior que 10.
+
+2 - Encontrar um objeto em um array de objetos:
+Dado um array de objetos que representam pessoas (cada objeto tem propriedades como nome e idade), use o método find() para encontrar o objeto que corresponde a uma pessoa com idade igual a 25.
+
+3 - Encontrar uma string em um array de strings:
+Dado um array de strings, use o método find() para encontrar a primeira string que contenha a palavra "JavaScript".
+
+4 - Encontrar um item em um inventário:
+Dado um array de objetos que representam itens em um inventário de jogos (cada objeto tem propriedades como nome e quantidade), use o método find() para encontrar o objeto que corresponda a um item com o nome "Espada Mágica".
+
+5 - Encontrar um usuário pelo ID:
+Dado um array de objetos que representam usuários (cada objeto tem propriedades como id, nome e email), use o método find() para encontrar o usuário com um ID específico, por exemplo, "123".
+
+6 - Encontrar um livro por autor:
+Dado um array de objetos que representam livros (cada objeto tem propriedades como titulo e autor), use o método find() para encontrar o primeiro livro escrito por um autor específico.
+
+7 - Encontrar um número primo:
+Escreva uma função que use o método find() para encontrar o primeiro número primo em um array de números inteiros.
+
+8 - Encontrar um elemento em um array bidimensional:
+Dado um array bidimensional (uma matriz) de números, use o método find() para encontrar o primeiro número maior que 20.
+
+9 - Encontrar um elemento em um array de datas:
+Dado um array de objetos Date, use o método find() para encontrar a primeira data que corresponda a um dia específico do mês, por exemplo, dia 15.
+
+10 - Encontrar um elemento em um array de palavras:
+Dado um array de palavras, use o método find() para encontrar a primeira palavra que tenha mais de 8 letras.

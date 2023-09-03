@@ -1,0 +1,38 @@
+1 - Soma de elementos em um array:
+Escreva uma função que recebe um array de números e retorna a soma de todos os elementos.
+
+2 - Encontrar o maior elemento:
+Crie uma função que encontre o maior número em um array de números.
+
+3 - Encontrar o menor elemento:
+Crie uma função que encontre o menor número em um array de números.
+
+4 - Filtrar números pares:
+Escreva uma função que recebe um array de números e retorna um novo array apenas com os números pares.
+
+5 - Contar ocorrências:
+Crie uma função que conte quantas vezes um elemento específico aparece em um array.
+
+6 - Inverter um array:
+Escreva uma função que inverte a ordem dos elementos em um array.
+
+7 - Remover elementos duplicados:
+Crie uma função que remova elementos duplicados de um array.
+
+8 - Ordenar um array:
+Escreva uma função que ordene os elementos de um array em ordem crescente.
+
+9 - Filtrar por intervalo:
+Crie uma função que receba um array de números e dois valores, min e max. A função deve retornar um novo array contendo apenas os números que estão dentro desse intervalo.
+
+10 - Concatenar arrays:
+Escreva uma função que concatene dois ou mais arrays em um único array.
+
+11 - Mapear e dobrar valores:
+Crie uma função que receba um array de números e retorne um novo array onde cada valor seja o dobro do valor correspondente no array original.
+
+12 - Somar matrizes:
+Escreva uma função que receba duas matrizes (arrays bidimensionais) e retorne uma nova matriz que seja a soma das duas matrizes.
+
+13 - Verificar se um elemento existe:
+Crie uma função que verifique se um elemento específico existe em um array. A função deve retornar true se o elemento existir e false caso contrário.

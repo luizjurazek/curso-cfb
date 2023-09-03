@@ -1,0 +1,29 @@
+1 - Dobrar valores:
+Dado um array de números, crie um novo array onde cada valor seja o dobro do valor correspondente no array original usando o método map().
+
+2 - Converter para maiúsculas:
+Dado um array de strings, crie um novo array onde todas as strings estejam em maiúsculas usando o método map().
+
+3 - Calcular o comprimento:
+Dado um array de strings, crie um novo array onde cada elemento seja o comprimento da string correspondente no array original usando o método map().
+
+4 - Conversão de temperatura:
+Dado um array de temperaturas em graus Celsius, crie um novo array onde cada temperatura seja convertida para graus Fahrenheit usando o método map(). A fórmula de conversão é: F = (C * 9/5) + 32.
+
+5 - Transformar objetos:
+Dado um array de objetos com a estrutura { nome: "Nome", idade: idade }, crie um novo array onde cada objeto seja transformado em uma string no formato "Nome tem idade anos" usando o método map().
+
+6 - Gerar IDs únicos:
+Dado um array de objetos, adicione um novo campo id a cada objeto com um valor único usando o método map(). Você pode usar um contador ou alguma outra estratégia para gerar os IDs únicos.
+
+7 - Remover elementos nulos:
+Dado um array que contenha elementos nulos ou indefinidos, crie um novo array onde esses elementos sejam removidos usando o método map().
+
+8 - Converter datas:
+Dado um array de strings que representam datas no formato "DD/MM/AAAA", crie um novo array onde cada data seja convertida para o formato "AAAA-MM-DD" usando o método map().
+
+9 - Mapear arrays de objetos:
+Dado um array de objetos com a estrutura { nome: "Nome", valor: valor }, crie um novo array onde cada objeto seja mapeado para seu valor usando o método map().
+
+10 - Dividir strings:
+Dado um array de strings que contêm nomes completos (com nome e sobrenome), crie um novo array onde cada elemento seja uma string contendo apenas o primeiro nome usando o método map().
