@@ -44,7 +44,7 @@ const gravarDados = (endpoint) => {
 
 
 btn_post.addEventListener("click", (evt) => {
-    gravarDados(endPointTemp)
+    gravarDados("Criar endpoint pra receber os dados")
 })
 // const gravarDados = (endpoint) => {
 //     fetch(endpoint, {
