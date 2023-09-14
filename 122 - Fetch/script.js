@@ -1,12 +1,15 @@
 const p_temp = document.getElementById("p_temp")
 const p_nivel = document.getElementById("p_nivel")
 const p_press = document.getElementById("p_press")
-const btn_texto = document.getElementById("btn_texto")
+const btn_get = document.getElementById("btn_get")
+const btn_post = document.getElementById("btn_post")
 
 const endPointTemp = "https://cfbcursos.luizjurazekk.repl.co/"
 
-const obterDados = (endPoint) => {
-    fetch(endPoint).then(result => result.json())
+const obterDados = (endpoint) => {
+    fetch(endpoint, {
+            method: "get"
+        }).then(result => result.json())
         .then((dados) => {
             console.log(dados)
             p_temp.innerHTML = `Temperatura: ${dados.temperatura}`
@@ -15,8 +18,39 @@ const obterDados = (endPoint) => {
         })
 }
 
-btn_texto.addEventListener("click", (evt) => {
+btn_get.addEventListener("click", (evt) => {
     obterDados(endPointTemp)
 })
 
 // let intervalo = setInterval(obterDados(endPointTemp), 3000)
+
+let dados = {
+    nome: "Luiz",
+    canal: "Jurazek Channel",
+    curso: "Javascript"
+}
+
+let cabecalho = {
+    method: "POST",
+    body: JSON.stringify(dados)
+}
+
+const gravarDados = (endpoint) => {
+    fetch(endpoint, cabecalho).then(res => res.json())
+        .then(ret => {
+            console.log(ret)
+        })
+}
+
+
+btn_post.addEventListener("click", (evt) => {
+    gravarDados(endPointTemp)
+})
+// const gravarDados = (endpoint) => {
+//     fetch(endpoint, {
+//         method: "POST",
+//         body: JSON.stringify(dados)
+//     }).then(res => res.json()).then(ret => {
+//         console.log(ret)
+//     })
+// }
