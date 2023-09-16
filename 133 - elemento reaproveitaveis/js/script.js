@@ -1,6 +1,4 @@
 const config = {
-    titulo: "Javascript",
-    texto: "Tesde de caixa de mensagem ",
     cor: "#48f"
 }
 const caixaMensagem = new CaixaMensagem(config) 
