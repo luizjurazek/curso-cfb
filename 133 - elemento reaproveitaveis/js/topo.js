@@ -1,7 +1,7 @@
 const head = document.head;
 const body = document.body;
 
-const style = "<link rel='stylesheet' type='text/css' href='topo.css'>"
+const style = "<link rel='stylesheet' type='text/css' href='./css/topo.css'>"
 head.innerHTML += style
 
 
@@ -31,8 +31,6 @@ const menu =
             </li>
         </ul>
      </div>`
-
-     console.log(menu)
      
 topo.innerHTML += logo
 topo.innerHTML += menu
