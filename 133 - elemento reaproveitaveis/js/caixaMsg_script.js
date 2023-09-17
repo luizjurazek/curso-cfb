@@ -43,6 +43,7 @@ class CaixaMensagem {
             const btn_ok = document.createElement("button")
             btn_ok.setAttribute("id", "btn_ok")
             btn_ok.setAttribute("class", "btn_ok")
+
             btn_ok.innerHTML = "OK"
 
             footerMsg.appendChild(btn_ok)
