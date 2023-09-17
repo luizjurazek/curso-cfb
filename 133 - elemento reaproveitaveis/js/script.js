@@ -1,5 +1,6 @@
 const config = {
-    cor: "#48f"
+    cor: "#48f",
+    tipo: 2
 }
 const caixaMensagem = new CaixaMensagem(config) 
 

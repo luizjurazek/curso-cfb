@@ -18,7 +18,7 @@ class CaixaMensagem {
         this.divmsg = document.createElement("div")
         this.divmsg.setAttribute("id", "divMsg")
         this.divmsg.setAttribute("class", "divMsg")
-        
+
         const areaCaixaMsg = document.createElement("div")
         areaCaixaMsg.setAttribute("id", "areaCaixaMsg")
         areaCaixaMsg.setAttribute("class", "areaCaixaMsg")
@@ -38,13 +38,28 @@ class CaixaMensagem {
         footerMsg.setAttribute("id", "footerMsg")
         footerMsg.setAttribute("class", "footerMsg")
         footerMsg.style.backgroundColor = this.cor;
-        
-        const btn_ok = document.createElement("button")
-        btn_ok.setAttribute("id", "btn_ok")
-        btn_ok.setAttribute("class", "btn_ok")
-        btn_ok.innerHTML = "OK"
 
-        footerMsg.appendChild(btn_ok)
+        if (this.tipo == 1) {
+            const btn_ok = document.createElement("button")
+            btn_ok.setAttribute("id", "btn_ok")
+            btn_ok.setAttribute("class", "btn_ok")
+            btn_ok.innerHTML = "OK"
+
+            footerMsg.appendChild(btn_ok)
+        } else if (this.tipo == 2){
+            const btn_n = document.createElement("button")
+            const btn_s = document.createElement("button")
+            btn_n.setAttribute("id", "btn_nao")
+            btn_n.setAttribute("class", "btn_ok")
+            btn_s.setAttribute("id", "btn_sim")
+            btn_s.setAttribute("class", "btn_ok")
+
+            btn_n.innerHTML = "Não"
+            btn_s.innerHTML = "Sim"
+
+            footerMsg.append(btn_s, btn_n)
+        }
+
 
         areaCaixaMsg.appendChild(tituloMsg)
         areaCaixaMsg.appendChild(bodyMsg)
@@ -53,7 +68,7 @@ class CaixaMensagem {
         this.divmsg.appendChild(areaCaixaMsg)
         this.destino.prepend(this.divmsg)
 
-        btn_ok.addEventListener("click", (evento) =>{
+        btn_ok.addEventListener("click", (evento) => {
             this.ocultar();
         })
     }
