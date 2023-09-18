@@ -10,14 +10,14 @@ class CaixaMensagem {
         this.cor = config.cor;
         this.tipo = config.tipo;
         this.destino = document.body;
+        this.titulo = config.titulo;
+        this.texto = config.texto;
     }
 
-    mostrar = (titulo, texto) => {
-        this.titulo = titulo
-        this.texto = texto
+    mostrar = () => {
         this.divmsg = document.createElement("div")
-        this.divmsg.setAttribute("id", "divMsg")
-        this.divmsg.setAttribute("class", "divMsg")
+        this.divmsg.id = "divMsg";
+        this.divmsg.classList.add("divMsg");
 
         const areaCaixaMsg = document.createElement("div")
         areaCaixaMsg.setAttribute("id", "areaCaixaMsg")
@@ -47,6 +47,9 @@ class CaixaMensagem {
             btn_ok.innerHTML = "OK"
 
             footerMsg.appendChild(btn_ok)
+            btn_ok.addEventListener("click", (evento) => {
+                this.ocultar();
+            })
         } else if (this.tipo == 2){
             const btn_n = document.createElement("button")
             const btn_s = document.createElement("button")
@@ -59,8 +62,34 @@ class CaixaMensagem {
             btn_s.innerHTML = "Sim"
 
             footerMsg.append(btn_s, btn_n)
-        }
 
+            btn_s.addEventListener("click", (evento) => {
+                this.ocultar();
+                console.log(true)
+            })
+            btn_n.addEventListener("click", (evento) => {
+                this.ocultar();
+                console.log(false)
+            })
+
+        } else if (this.tipo == 3){
+            const inputBtn = document.createElement("input")
+            inputBtn.setAttribute("id", "inputBtn")
+            inputBtn.setAttribute("class", "inputBtn")
+            inputBtn.setAttribute("type", "text")
+
+            const btn_env = document.createElement("button")
+            btn_env.setAttribute("id", "btn_ok")
+            btn_env.setAttribute("class", "btn_ok")
+
+            btn_env.innerHTML = "Enviar"
+            btn_env.addEventListener("click", (evento) => {
+                this.ocultar();
+                console.log(inputBtn.value)
+            })
+
+            footerMsg.append(inputBtn, btn_env)
+        }
 
         areaCaixaMsg.appendChild(tituloMsg)
         areaCaixaMsg.appendChild(bodyMsg)
@@ -68,10 +97,6 @@ class CaixaMensagem {
 
         this.divmsg.appendChild(areaCaixaMsg)
         this.destino.prepend(this.divmsg)
-
-        btn_ok.addEventListener("click", (evento) => {
-            this.ocultar();
-        })
     }
 
     ocultar = () => {

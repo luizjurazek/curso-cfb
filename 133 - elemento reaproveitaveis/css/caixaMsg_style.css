@@ -1,3 +1,7 @@
+* {
+    font-family: 'Arial';
+}
+
 .divMsg {
     display: flex;
     justify-content: center;
@@ -15,7 +19,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    width: 300px;
+    width: 350px;
 }
 
 .tituloMsg {
@@ -55,4 +59,13 @@
     border-radius: 5px;
     cursor: pointer;
     text-transform: uppercase;
+}
+
+.inputBtn {
+    background-color: #eee;
+    color: #000;
+    padding: 10px 10px;
+    border-radius: 5px;
+    cursor: text;
+    outline: none;
 }
