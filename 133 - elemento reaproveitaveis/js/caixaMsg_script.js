@@ -15,85 +15,32 @@ class CaixaMensagem {
     }
 
     mostrar = () => {
-        this.divmsg = document.createElement("div")
-        this.divmsg.id = "divMsg";
-        this.divmsg.classList.add("divMsg");
+        // elemento que ocupa todo a tela
+        this.divmsg = this.criarElemento("div", "divMsg", "divMsg", "", "")
 
-        const areaCaixaMsg = document.createElement("div")
-        areaCaixaMsg.setAttribute("id", "areaCaixaMsg")
-        areaCaixaMsg.setAttribute("class", "areaCaixaMsg")
+        // elemento central 
+        const areaCaixaMsg = this.criarElemento("div", "areaCaixaMsg", "areaCaixaMsg", "", "")
 
-        const tituloMsg = document.createElement("div")
-        tituloMsg.setAttribute("id", "tituloMsg")
-        tituloMsg.setAttribute("class", "tituloMsg")
+        // Titulo do conteúdo central
+        const tituloContent = `<p class="titulo">${this.titulo}</p>`
+        const tituloMsg = this.criarElemento("div", "tituloMsg", "tituloMsg", tituloContent)
         tituloMsg.style.backgroundColor = this.cor;
-        tituloMsg.innerHTML = `<p class="titulo">${this.titulo}</p>`
 
-        const bodyMsg = document.createElement("div")
-        bodyMsg.setAttribute("id", "bodyMsg")
-        bodyMsg.setAttribute("class", "bodyMsg")
-        bodyMsg.innerHTML = `<p class="texto">${this.texto}</p>`
+        // Corpo do conteúdo central
+        const bodyContent = `<p class="texto">${this.texto}</p>`
+        const bodyMsg = this.criarElemento("div", "bodyMsg", "bodyMsg", bodyContent, "")
 
-        const footerMsg = document.createElement("div")
-        footerMsg.setAttribute("id", "footerMsg")
-        footerMsg.setAttribute("class", "footerMsg")
+        // rodape do conteúdo central
+        const footerMsg = this.criarElemento("div", "footerMsg", "footerMsg", "")
         footerMsg.style.backgroundColor = this.cor;
 
-        if (this.tipo == 1) {
-            const btn_ok = document.createElement("button")
-            btn_ok.setAttribute("id", "btn_ok")
-            btn_ok.setAttribute("class", "btn_ok")
+        // Defini qual o tipo da caixa e os botoes de acordo com a funcionalidade
+        // Tipo 1 == OK 
+        // Tipo 2 == "sim" "não"
+        // Tipo 3 == campo de texto
+        this.tipoDaCaixa(this.tipo, footerMsg)
 
-            btn_ok.innerHTML = "OK"
-
-            footerMsg.appendChild(btn_ok)
-            btn_ok.addEventListener("click", (evento) => {
-                this.ocultar();
-            })
-        } else if (this.tipo == 2){
-            const btn_n = document.createElement("button")
-            const btn_s = document.createElement("button")
-            btn_n.setAttribute("id", "btn_nao")
-            btn_n.setAttribute("class", "btn_ok")
-            btn_s.setAttribute("id", "btn_sim")
-            btn_s.setAttribute("class", "btn_ok")
-
-            btn_n.innerHTML = "Não"
-            btn_s.innerHTML = "Sim"
-
-            footerMsg.append(btn_s, btn_n)
-
-            btn_s.addEventListener("click", (evento) => {
-                this.ocultar();
-                console.log(true)
-            })
-            btn_n.addEventListener("click", (evento) => {
-                this.ocultar();
-                console.log(false)
-            })
-
-        } else if (this.tipo == 3){
-            const inputBtn = document.createElement("input")
-            inputBtn.setAttribute("id", "inputBtn")
-            inputBtn.setAttribute("class", "inputBtn")
-            inputBtn.setAttribute("type", "text")
-
-            const btn_env = document.createElement("button")
-            btn_env.setAttribute("id", "btn_ok")
-            btn_env.setAttribute("class", "btn_ok")
-
-            btn_env.innerHTML = "Enviar"
-            btn_env.addEventListener("click", (evento) => {
-                this.ocultar();
-                console.log(inputBtn.value)
-            })
-
-            footerMsg.append(inputBtn, btn_env)
-        }
-
-        areaCaixaMsg.appendChild(tituloMsg)
-        areaCaixaMsg.appendChild(bodyMsg)
-        areaCaixaMsg.appendChild(footerMsg)
+        areaCaixaMsg.append(tituloMsg, bodyMsg, footerMsg)
 
         this.divmsg.appendChild(areaCaixaMsg)
         this.destino.prepend(this.divmsg)
@@ -101,5 +48,56 @@ class CaixaMensagem {
 
     ocultar = () => {
         this.divmsg.remove()
+    }
+
+    criarElemento(elName, elId, elClass, elContent, elType){
+        const elemento = document.createElement(elName)
+        elemento.id = elId
+        elemento.type = elType
+        elemento.classList.add(elClass)
+        elemento.innerHTML = elContent
+
+        return elemento
+    }
+
+    tipoDaCaixa(tipe, elToAppend){
+        if (tipe == 1) {
+            const btn_ok = this.criarElemento("button", "btn_ok", "btn_ok", "OK")
+            btn_ok.setAttribute("id", "btn_ok")
+
+            btn_ok.addEventListener("click", (evento) => {
+                this.ocultar();
+                console.log(true)
+            })
+            
+            elToAppend.appendChild(btn_ok)
+        } else if (tipe == 2){ 
+            const btn_n = this.criarElemento("button", "btn_nao", "btn_ok", "Não")
+            const btn_s = this.criarElemento("button", "btn_sim", "btn_ok", "Sim")
+
+            btn_s.addEventListener("click", (evento) => {
+                this.ocultar();
+                console.log(true)
+            })
+
+            btn_n.addEventListener("click", (evento) => {
+                this.ocultar();
+                console.log(false)
+            })
+            elToAppend.append(btn_s, btn_n)
+
+        } else if (tipe == 3){
+            const inputBtn = this.criarElemento("input", "inputBtn", "inputBtn", "","text")
+            const btn_env = this.criarElemento("button", "btn_ok", "btn_ok", "Enviar")
+            inputBtn.setAttribute("required", "required")
+            
+            btn_env.addEventListener("click", (evento) => {
+                this.ocultar();
+                console.log(inputBtn.value)
+            })
+
+            elToAppend.append(inputBtn, btn_env)
+        }
+        return elToAppend
     }
 }

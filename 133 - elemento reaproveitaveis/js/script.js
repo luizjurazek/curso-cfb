@@ -11,7 +11,7 @@ const configOpt = {
     texto: "Deseja salvar os dados?"
 }
 const configQuest = {
-    cor: "#48f",
+    cor: "#f00",
     tipo: 3,
     titulo: "Cadastro",
     texto: "Insira seu nome abaixo: "
