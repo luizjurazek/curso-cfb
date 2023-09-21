@@ -7,7 +7,7 @@
 }
 
 /* Formatacao tela login */
-.fundoLogin {
+/* .fundoLogin {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +22,6 @@
 
 .baseLogin {
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: stretch;
     width: 60vw;
@@ -64,6 +63,7 @@
     flex-direction: column;
     box-sizing: inherit;
     margin-bottom: 15px;
+    width: 100%;
 }
 
 .campoLogin label {
@@ -77,6 +77,7 @@
     background-color: #fff;
     border-radius: 5px;
     outline: none;
+    width: 100%;
 }
 
 .botoesLogin {
@@ -95,4 +96,4 @@
     padding: 10px 5px;
     width: 12vw;
     box-sizing: inherit;
-}
+} */

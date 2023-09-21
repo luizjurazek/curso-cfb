@@ -1,3 +1,8 @@
 import { Login } from "./login.js";
 
-Login.login("123", "321")
+let config = {
+    btnColor: '#247',
+    imgPath: 'img/logo.png'
+}
+
+Login.login(config)
