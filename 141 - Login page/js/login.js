@@ -111,21 +111,6 @@ class Login {
             baseLogin.appendChild(logoLogin)
 
             document.body.prepend(fundoLogin)
-            let testeel = criarElemento("div")
-
-        // fetch(this.endpoint)
-        //     .then(res => res.json())
-        //     .then(res => {
-        //         if(res){
-        //             this.logado = true;
-        //             this.matlogado = mat;
-        //             this.nomelogado = res.nome;
-        //             this.acessologado = res.acesso;
-        //             console.log(res)
-        //         } else {
-        //             console.log("Usuário não encontrado")
-        //         }
-        //     })
     }
 
     static verificaLogin = () => {
