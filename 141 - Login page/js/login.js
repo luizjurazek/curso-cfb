@@ -4,8 +4,8 @@ class Login {
     static nomelogado = null;
     static acessologado = null;
     static estilocss = null;
-    static endpoint = "https://loginv1.luizjurazekk.repl.co/"
-    //https://loginv1.luizjurazekk.repl.co/?matricula=123&senha=321
+    // static endpoint = "https://loginv1.luizjurazekk.repl.co/"
+    // //https://loginv1.luizjurazekk.repl.co/?matricula=123&senha=321
     static config = {
         btnColor: "#048",
         imgPath: 'img/logo.png'
@@ -17,7 +17,7 @@ class Login {
             this.config = config
         }
 
-        this.endpoint += `?matricula=${this.mat}&senha=${this.pass}`
+        // this.endpoint += `?matricula=${this.mat}&senha=${this.pass}`
         this.estilocss = `.fundoLogin {display: flex;justify-content: center;align-items: center;width: 100%;
             height: 100vh;position: absolute;top: 0px;left: 0px;background-color: rgba(0, 0, 0, 0.75);box-sizing: border-box;}
         
@@ -87,11 +87,7 @@ class Login {
             btnLogin.setAttribute("id", "btn_login")
             btnLogin.innerHTML = "Login"
             btnLogin.addEventListener("click", (evt)=>{
-               if(this.verificaLogin()){
-                    this.fechar()
-               } else {
-                
-               }
+               this.verificaLogin()
             })
 
             const btnCancelar = document.createElement("button")
@@ -136,15 +132,30 @@ class Login {
         const mat = document.getElementById("f_username").value;
         const pass = document.getElementById("f_senha").value;
 
-        if(mat == "123" && pass == "321"){
-            return true
-        } else {
-            false
-        }
+        const endpoint = `https://loginv1.luizjurazekk.repl.co/?matricula=${mat}&senha=${pass}`
+
+        fetch(endpoint)
+            .then(res => res.json())
+            .then(res => {
+                if(res){
+                    this.logado = true;
+                    this.matlogado = mat;
+                    this.nomelogado = res.nome;
+                    this.acessologado = res.acesso;
+                    console.log(res)
+                    this.fechar()
+                    return true;  
+                } else {
+                    this.logado = false;
+                    this.matlogado = null;
+                    this.nomelogado = null;
+                    this.acessologado = null;
+                    console.log(res)
+                    alert("Usuário não encontrado")
+                    return false  
+                }
+            })
     }
-
-
-
 
     static fechar = () => {
         const id_estiloLogin = document.getElementById("id_estiloLogin")
