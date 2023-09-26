@@ -1,30 +1,30 @@
 class Login {
-    static logado = false;
-    static matlogado = null;
-    static nomelogado = null;
-    static acessologado = null;
-    static estilocss = null;
-    static callback_ok = null;
-    static callback_nao_ok = null;
-    static callbackFechar = null;
-    // static endpoint = "https://loginv1.luizjurazekk.repl.co/"
-    // //https://loginv1.luizjurazekk.repl.co/?matricula=123&senha=321
-    static config = {
-        btnColor: "#048",
-        imgPath: 'img/logo.png'
-    };
+     // Variáveis de estado
+     static logado = false;           // Define se o usuário está logado ou não
+     static matlogado = null;         // Matrícula do usuário logado
+     static nomelogado = null;        // Nome do usuário logado
+     static acessologado = null;      // define o numero do acesso logado
+     static estilocss = null;         // Estilos CSS dinâmicos
+     static callback_ok = null;       // Função de retorno chamada em caso de login bem-sucedido
+     static callback_nao_ok = null;   // Função de retorno chamada em caso de login malsucedido
+     static callbackFechar = null;    // Função de retorno chamada ao fechar a janela de login
+     static config = {                // Configurações padrão
+         btnColor: "#048",            
+         imgPath: 'img/logo.png'      
+     };
 
-
+    // Função de login
     static login = (callback_ok, callback_nao_ok, callbackFechar, config = null) => {
         if(config != null){
-            this.config = config
+            this.config = config  // Configurações personalizadas, se fornecidas
         }
 
+        // Atribui as funções de retorno
         this.callback_ok = () => {callback_ok()}
         this.callback_nao_ok = () => {callback_nao_ok()}
         this.callbackFechar = () => {callbackFechar()}
 
-        // this.endpoint += `?matricula=${this.mat}&senha=${this.pass}`
+        // Define os estilos CSS dinâmicos
         this.estilocss = `.fundoLogin {display: flex;justify-content: center;align-items: center;width: 100%;
             height: 100vh;position: absolute;top: 0px;left: 0px;background-color: rgba(0, 0, 0, 0.75);box-sizing: border-box;}
         
@@ -51,6 +51,8 @@ class Login {
         
             .botoesLogin button {cursor: pointer;background-color: ${this.config.btnColor};color: #fff;border-radius: 5px;
             padding: 10px 5px;width: 12vw;box-sizing: inherit;}`
+
+            // Cria elementos da interface de login dinamicamente
             const linkestilo =  document.createElement("style")
             linkestilo.setAttribute("id","id_estiloLogin")
             linkestilo.innerHTML = this.estilocss
@@ -121,36 +123,40 @@ class Login {
             document.body.prepend(fundoLogin)
     }
 
+    // Função para verificar o login
     static verificaLogin = () => {
+        // Obtém a matrícula e a senha do usuário a partir dos campos de entrada
         const mat = document.getElementById("f_username").value;
         const pass = document.getElementById("f_senha").value;
 
+        // Faz uma solicitação ao servidor para verificar o login
         const endpoint = `https://loginv1.luizjurazekk.repl.co/?matricula=${mat}&senha=${pass}`
-
         fetch(endpoint)
             .then(res => res.json())
             .then(res => {
                 if(res){
+                    // Se o login for bem-sucedido, atualiza as variáveis de estado
                     this.logado = true;
                     this.matlogado = mat;
                     this.nomelogado = res.nome;
                     this.acessologado = res.acesso;
-                    console.log(res)
+                    // console.log(res)
                     this.callback_ok()
                     this.fechar()
                     return true;  
                 } else {
+                    // Se o login falhar, redefina as variáveis de estado
                     this.logado = false;
                     this.matlogado = null;
                     this.nomelogado = null;
                     this.acessologado = null;
-                    console.log(res)
                     this.callback_nao_ok()
                     return false  
                 }
             })
     }
 
+    // Função para fechar a janela de logi
     static fechar = () => {
         const id_estiloLogin = document.getElementById("id_estiloLogin")
         id_estiloLogin.remove()
@@ -160,6 +166,7 @@ class Login {
     }
 }
 
+// Função auxiliar para criar elementos HTML
 function criarElemento(elName, elId, elClass, elContent, elType){
     const elemento = document.createElement(elName)
     elemento.id = elId
