@@ -6,21 +6,33 @@ let config = {
     imgPath: 'img/logo.png'
 }
 
-let configCaixaMensagem = {
+
+const callback_ok = () => {}
+
+let configCaixaMensagemNaoOk = {
     cor: "#CD4244",
     tipo: 1,
     titulo: "Login não efetuado",
     texto: "Usuário ou senha não encontrado!"
 }
 
-const caixaDeMensagem = new CaixaMensagem(configCaixaMensagem)
-
-const callback_ok = () => {
-    
-}
+const caixaDeMensagemNaoOk = new CaixaMensagem(configCaixaMensagemNaoOk)
 
 const callback_nao_ok = () => {
-    caixaDeMensagem.mostrar()
+    caixaDeMensagemNaoOk.mostrar()
 }
 
-Login.login(callback_ok, callback_nao_ok, config)
+let configCaixaMensagemFechar = {
+    cor: "#247",
+    tipo: 2,
+    titulo: "Cancelar",
+    texto: "Deseja sair?"
+}
+
+const caixaDeMensagemFechar = new CaixaMensagem(configCaixaMensagemFechar)
+
+const callbackFechar = () => {
+    caixaDeMensagemFechar.mostrar()
+}
+
+Login.login(callback_ok, callback_nao_ok, callbackFechar, config)

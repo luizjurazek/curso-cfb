@@ -5,6 +5,7 @@ class CaixaMensagem {
     destino = null;
     divmsg = null;
     cor = null;
+    teste = null;
 
     constructor(config) {
         this.cor = config.cor;
@@ -44,6 +45,7 @@ class CaixaMensagem {
 
         this.divmsg.appendChild(areaCaixaMsg)
         this.destino.prepend(this.divmsg)
+        return this.teste
     }
 
     ocultar = () => {
@@ -75,14 +77,16 @@ class CaixaMensagem {
             const btn_n = this.criarElemento("button", "btn_nao", "btn_ok", "Não")
             const btn_s = this.criarElemento("button", "btn_sim", "btn_ok", "Sim")
 
+
+            // Retornar true para capturar e fechar a caixa 
             btn_s.addEventListener("click", (evento) => {
                 this.ocultar();
-                console.log(true)
+                this.teste = true
+                console.log(this.teste)
             })
 
             btn_n.addEventListener("click", (evento) => {
                 this.ocultar();
-                console.log(false)
             })
             elToAppend.append(btn_s, btn_n)
 

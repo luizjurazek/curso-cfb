@@ -6,6 +6,7 @@ class Login {
     static estilocss = null;
     static callback_ok = null;
     static callback_nao_ok = null;
+    static callbackFechar = null;
     // static endpoint = "https://loginv1.luizjurazekk.repl.co/"
     // //https://loginv1.luizjurazekk.repl.co/?matricula=123&senha=321
     static config = {
@@ -14,13 +15,14 @@ class Login {
     };
 
 
-    static login = (callback_ok, callback_nao_ok, config = null) => {
+    static login = (callback_ok, callback_nao_ok, callbackFechar, config = null) => {
         if(config != null){
             this.config = config
         }
 
         this.callback_ok = () => {callback_ok()}
         this.callback_nao_ok = () => {callback_nao_ok()}
+        this.callbackFechar = () => {callbackFechar()}
 
         // this.endpoint += `?matricula=${this.mat}&senha=${this.pass}`
         this.estilocss = `.fundoLogin {display: flex;justify-content: center;align-items: center;width: 100%;
@@ -99,7 +101,11 @@ class Login {
             btnCancelar.setAttribute("id", "btn_cancelar")
             btnCancelar.innerHTML = "Cancelar"
             btnCancelar.addEventListener("click", (evt)=> {
-                this.fechar();
+                // Aguardando um retorno true para fechar a caixa mas ainda nao funciona
+                if(callbackFechar()){
+                    this.fechar();
+                };
+                
             })
 
             botoesLogin.append(btnLogin, btnCancelar)
@@ -143,7 +149,6 @@ class Login {
                     this.acessologado = null;
                     console.log(res)
                     this.callback_nao_ok()
-                    alert("Usuário não encontrado")
                     return false  
                 }
             })
