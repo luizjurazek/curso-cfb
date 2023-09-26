@@ -32,7 +32,7 @@ let configCaixaMensagemFechar = {
 const caixaDeMensagemFechar = new CaixaMensagem(configCaixaMensagemFechar)
 
 const callbackFechar = () => {
-    caixaDeMensagemFechar.mostrar()
+    return caixaDeMensagemFechar
 }
 
 Login.login(callback_ok, callback_nao_ok, callbackFechar, config)

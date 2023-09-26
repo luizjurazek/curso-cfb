@@ -6,6 +6,7 @@ class CaixaMensagem {
     divmsg = null;
     cor = null;
     teste = null;
+    retornoTipoCaixa = null;
 
     constructor(config) {
         this.cor = config.cor;
@@ -39,7 +40,43 @@ class CaixaMensagem {
         // Tipo 1 == OK 
         // Tipo 2 == "sim" "não"
         // Tipo 3 == campo de texto
-        this.tipoDaCaixa(this.tipo, footerMsg)
+        // this.tipoDaCaixa(this.tipo, footerMsg
+        this.retornoTipoCaixa = null
+        if (this.tipo == 1) {
+            const btn_ok = this.criarElemento("button", "btn_ok", "btn_ok", "OK")
+            btn_ok.setAttribute("id", "btn_ok")
+
+            btn_ok.addEventListener("click", (evento) => {
+                this.ocultar();
+                console.log(true)
+            })
+            
+            footerMsg.appendChild(btn_ok)
+        } else if (this.tipo == 2){ 
+            const btn_n = this.criarElemento("button", "btn_nao", "btn_ok", "Não")
+            const btn_s = this.criarElemento("button", "btn_sim", "btn_ok", "Sim")
+
+            // Retornar true para capturar e fechar a caixa 
+            btn_s.addEventListener("click", (evento) => {
+                window.close() 
+            })
+
+            btn_n.addEventListener("click", (evento) => {
+                this.ocultar();
+            })
+            footerMsg.append(btn_s, btn_n)
+
+        } else if (this.tipo == 3){
+            const inputBtn = this.criarElemento("input", "inputBtn", "inputBtn", "","text")
+            const btn_env = this.criarElemento("button", "btn_ok", "btn_ok", "Enviar")
+            inputBtn.setAttribute("required", "required")
+            
+            btn_env.addEventListener("click", (evento) => {
+                this.ocultar();
+                console.log(inputBtn.value)
+            })
+            footerMsg.append(inputBtn, btn_env)
+        }
 
         areaCaixaMsg.append(tituloMsg, bodyMsg, footerMsg)
 
@@ -62,48 +99,10 @@ class CaixaMensagem {
         return elemento
     }
 
-    tipoDaCaixa(tipe, elToAppend){
-        if (tipe == 1) {
-            const btn_ok = this.criarElemento("button", "btn_ok", "btn_ok", "OK")
-            btn_ok.setAttribute("id", "btn_ok")
-
-            btn_ok.addEventListener("click", (evento) => {
-                this.ocultar();
-                console.log(true)
-            })
-            
-            elToAppend.appendChild(btn_ok)
-        } else if (tipe == 2){ 
-            const btn_n = this.criarElemento("button", "btn_nao", "btn_ok", "Não")
-            const btn_s = this.criarElemento("button", "btn_sim", "btn_ok", "Sim")
-
-
-            // Retornar true para capturar e fechar a caixa 
-            btn_s.addEventListener("click", (evento) => {
-                this.ocultar();
-                this.teste = true
-                console.log(this.teste)
-            })
-
-            btn_n.addEventListener("click", (evento) => {
-                this.ocultar();
-            })
-            elToAppend.append(btn_s, btn_n)
-
-        } else if (tipe == 3){
-            const inputBtn = this.criarElemento("input", "inputBtn", "inputBtn", "","text")
-            const btn_env = this.criarElemento("button", "btn_ok", "btn_ok", "Enviar")
-            inputBtn.setAttribute("required", "required")
-            
-            btn_env.addEventListener("click", (evento) => {
-                this.ocultar();
-                console.log(inputBtn.value)
-            })
-
-            elToAppend.append(inputBtn, btn_env)
-        }
-        return elToAppend
-    }
+    // tipoDaCaixa(tipe, elToAppend){
+        
+    //     return elToAppend
+    // }
 }
 
 export { CaixaMensagem }

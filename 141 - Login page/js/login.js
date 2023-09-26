@@ -101,11 +101,8 @@ class Login {
             btnCancelar.setAttribute("id", "btn_cancelar")
             btnCancelar.innerHTML = "Cancelar"
             btnCancelar.addEventListener("click", (evt)=> {
-                // Aguardando um retorno true para fechar a caixa mas ainda nao funciona
-                if(callbackFechar()){
-                    this.fechar();
-                };
-                
+                let returnocall = callbackFechar()
+                returnocall.mostrar()
             })
 
             botoesLogin.append(btnLogin, btnCancelar)
