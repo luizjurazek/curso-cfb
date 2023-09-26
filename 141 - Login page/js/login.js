@@ -4,6 +4,8 @@ class Login {
     static nomelogado = null;
     static acessologado = null;
     static estilocss = null;
+    static callback_ok = null;
+    static callback_nao_ok = null;
     // static endpoint = "https://loginv1.luizjurazekk.repl.co/"
     // //https://loginv1.luizjurazekk.repl.co/?matricula=123&senha=321
     static config = {
@@ -12,10 +14,13 @@ class Login {
     };
 
 
-    static login = (config = null) => {
+    static login = (callback_ok, callback_nao_ok, config = null) => {
         if(config != null){
             this.config = config
         }
+
+        this.callback_ok = () => {callback_ok()}
+        this.callback_nao_ok = () => {callback_nao_ok()}
 
         // this.endpoint += `?matricula=${this.mat}&senha=${this.pass}`
         this.estilocss = `.fundoLogin {display: flex;justify-content: center;align-items: center;width: 100%;
@@ -128,6 +133,7 @@ class Login {
                     this.nomelogado = res.nome;
                     this.acessologado = res.acesso;
                     console.log(res)
+                    this.callback_ok()
                     this.fechar()
                     return true;  
                 } else {
@@ -136,6 +142,7 @@ class Login {
                     this.nomelogado = null;
                     this.acessologado = null;
                     console.log(res)
+                    this.callback_nao_ok()
                     alert("Usuário não encontrado")
                     return false  
                 }
@@ -149,8 +156,6 @@ class Login {
         const fundoLogin = document.getElementById("fundoLogin")
         fundoLogin.remove()
     }
-
-
 }
 
 function criarElemento(elName, elId, elClass, elContent, elType){

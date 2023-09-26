@@ -101,3 +101,5 @@ class CaixaMensagem {
         return elToAppend
     }
 }
+
+export { CaixaMensagem }
