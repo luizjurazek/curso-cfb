@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 
-.dataGridView .dgvTitulos .dgvLinha {
+.dataGridView .dgvTitulos .dgvLinhaTitle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,5 +68,9 @@
     width: 150px;
 }
 .c5 {
-    width: 70px;
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }

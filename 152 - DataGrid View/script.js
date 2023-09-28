@@ -5,6 +5,7 @@ const configDataGridView = {
 
 const dataGridView = (config) => {
     const dgvDados = document.getElementById(config.idDestino)
+    dgvDados.innerHTML = ""
     fetch(config.endpoint)
     .then(res => res.json())
     .then(res => {
@@ -32,10 +33,23 @@ const dataGridView = (config) => {
             c4.innerHTML = el.modelo
             dgvLinha.appendChild(c4)
 
+            const iconDelete = document.createElement("img")
+            iconDelete.setAttribute("class", "dgvIcone")
+            iconDelete.setAttribute("src", "./icons/delete.svg")
+
+            const iconEdit = document.createElement("img")
+            iconEdit.setAttribute("class", "dgvIcone")
+            iconEdit.setAttribute("src", "./icons/edit.svg")
+
+            const iconView = document.createElement("img")
+            iconView.setAttribute("class", "dgvIcone")
+            iconView.setAttribute("src", "./icons/visibility.svg")
+
             const c5 = document.createElement("div")
             c5.setAttribute("class", "item c5")
-            c5.innerHTML = "D - E - V"
+            c5.append(iconView, iconEdit, iconDelete)
             dgvLinha.appendChild(c5)
+
 
             dgvDados.appendChild(dgvLinha)
         })

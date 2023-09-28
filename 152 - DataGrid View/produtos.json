@@ -28,5 +28,11 @@
         "produto":"Drone",
         "marca":"DJI",
         "modelo":"Mini 3 Pro"
+    },
+    {
+        "id":"06",
+        "produto":"Playstation",
+        "marca":"Sony",
+        "modelo":"5"
     }
 ]
