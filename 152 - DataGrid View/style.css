@@ -3,6 +3,7 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .dataGridView {
@@ -73,4 +74,60 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+/* Window view */
+.janelaView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.view {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: #c3c3c3;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.campo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 40vw;
+}
+
+.campo input {
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+}
+
+.rodape {
+    align-items: center !important;
+}
+
+.rodape .btn_ok {
+    background-color: #138;
+    color: #fff;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ocultar {
+    display: none;
 }

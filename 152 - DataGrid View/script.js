@@ -37,7 +37,7 @@ const dataGridView = (config) => {
                 iconDelete.setAttribute("class", "dgvIcone")
                 iconDelete.setAttribute("src", "./icons/delete.svg")
                 iconDelete.addEventListener("click", (evt) => {
-                    const id = evt.target.parentNode.parentNode.firstChild.innerHTML;
+                    const id = el.n_id_produto;
                     const linha = evt.target.parentNode.parentNode;
                     const endpoint = `http://127.0.0.1:1880/removeproduto/${id}`;
                     fetch(endpoint)
@@ -55,6 +55,21 @@ const dataGridView = (config) => {
                 const iconView = document.createElement("img")
                 iconView.setAttribute("class", "dgvIcone")
                 iconView.setAttribute("src", "./icons/visibility.svg")
+                iconView.addEventListener("click", (evt) => {
+                    document.querySelector("#janelaView").classList.remove("ocultar")
+                    const id = el.n_id_produto;
+                    const endpoint = `http://127.0.0.1:1880/getproduto/${id}`;
+                    fetch(endpoint)
+                        .then(res => res.json())
+                        .then(res => {
+                            console.log(res)
+                            document.querySelector("#f_id").value = res[0].n_id_produto;
+                            document.querySelector("#f_produto").value = res[0].s_nome_produto;
+                            document.querySelector("#f_marca").value = res[0].s_marca_produto;
+                            document.querySelector("#f_modelo").value = res[0].s_modelo_produto;
+
+                        })
+                })
 
                 const c5 = document.createElement("div")
                 c5.setAttribute("class", "item c5")
@@ -70,6 +85,9 @@ const dataGridView = (config) => {
 
 dataGridView(configDataGridView)
 
+document.querySelector("#btn_ok").addEventListener("click", (evt) => {
+    document.querySelector("#janelaView").classList.add("ocultar")
+})
 
 
 /* <div class="dgvLinha">
