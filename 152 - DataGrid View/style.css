@@ -162,3 +162,18 @@
 .ocultar {
     display: none;
 }
+
+.dgvCriarItem {
+    margin-top: 20px;
+}
+
+.dgvCriarItem .btn_criar_element {
+    color: #fff;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #138;
+}
+
+

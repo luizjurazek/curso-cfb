@@ -23,34 +23,10 @@
         </div>
 
         <div id="dgvDados" class="dgvDados">
-            <div class="dgvLinha">
-<div id="view" class="view">
-                <div class="campo">
-                    <label>ID</label>
-                    <input type="text" name="f_id_editar" id="f_id_editar" readonly="">
-                </div>
-                <div class="campo">
-                    <label>Produto</label>
-                    <input type="text" name="f_produto_editar" id="f_produto_editar">
-                </div>
-                <div class="campo">
-                    <label>Marca</label>
-                    <input type="text" name="f_marca_editar" id="f_marca_editar">
-                </div>
-                <div class="campo">
-                    <label>Modelo</label>
-                    <input type="text" name="f_modelo_editar" id="f_modelo_editar">
-                </div>
-                <div class="campo rodape_editar">
-                    <button id="btn_salvar" class="btn_salvar">Salvar</button>
-                    <button id="btn_cancelar" class="btn_cancelar">Cancelar</button>
-                </div>
-            </div>
-            </div>
+
         </div>
-
-        <div id="dgvCriarItem">
-
+        <div id="dgvCriarItem" class="dgvCriarItem">
+            <button id="btn_criar_element" class="btn_criar_element">Inserir Produto</button>
         </div>
 
         <div id="janelaView" class="janelaView ocultar">
@@ -69,7 +45,7 @@
                 </div>
                 <div class="campo">
                     <label>Modelo</label>
-                    <input type="text" name="f_modelo" id="f_modelo" readonly >
+                    <input type="text" name="f_modelo" id="f_modelo" readonly>
                 </div>
                 <div class="campo rodape">
                     <button id="btn_ok" class="btn_ok">Ok</button>
@@ -99,6 +75,27 @@
                 <div class="campo rodape_editar">
                     <button id="btn_salvar" class="btn_salvar">Salvar</button>
                     <button id="btn_cancelar" class="btn_cancelar">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="janelaCriar" class="janelaView ocultar">
+            <div id="view" class="view">
+                <div class="campo">
+                    <label>Produto</label>
+                    <input type="text" name="f_produto_editar" id="f_produto_criar">
+                </div>
+                <div class="campo">
+                    <label>Marca</label>
+                    <input type="text" name="f_marca_editar" id="f_marca_criar">
+                </div>
+                <div class="campo">
+                    <label>Modelo</label>
+                    <input type="text" name="f_modelo_editar" id="f_modelo_criar">
+                </div>
+                <div class="campo rodape_editar">
+                    <button id="btn_criar_elemento" class="btn_salvar">Inserir</button>
+                    <button id="btn_cancelar_criar" class="btn_cancelar">Cancelar</button>
                 </div>
             </div>
         </div>

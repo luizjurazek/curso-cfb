@@ -118,6 +118,64 @@ document.querySelector("#btn_salvar").addEventListener("click", (evt) => {
     location.reload()
 })
 
+document.querySelector("#btn_criar_element").addEventListener("click", (evt) => {
+    document.querySelector("#janelaCriar").classList.remove("ocultar")
+})
+
+document.querySelector("#btn_cancelar_criar").addEventListener("click", (evt) => {
+    document.querySelector("#janelaCriar").classList.add("ocultar")
+})
+
+document.querySelector("#btn_criar_elemento").addEventListener("click", (evt) => {
+    const produto = document.getElementById("f_produto_criar").value;
+    const marca = document.getElementById("f_marca_criar").value;
+    const modelo = document.getElementById("f_modelo_criar").value;
+
+    if (produto == "" || marca == "" || modelo == ""){
+        alert("Preencha todos os itens")
+    } else {
+        // Criar um objeto com os dados a serem enviados no corpo da solicitação
+        const data = {
+            produto: produto,
+            marca: marca,
+            modelo: modelo
+        };
+
+        // Criar as opções da solicitação
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json" // Indica que estamos enviando JSON no corpo da solicitação
+            },
+            body: JSON.stringify(data) // Converte o objeto de dados em JSON
+        };
+
+        // Especifique o URL do endpoint de destino
+        const endpoint = "http://127.0.0.1:1880/criarproduto";
+
+        // Realize a solicitação POST
+        fetch(endpoint, requestOptions)
+            .then(response => {
+                if (response.ok) {
+                    console.log("Solicitação bem-sucedida");
+                } else {
+                    console.error("Erro na solicitação");
+                }
+            })
+            .catch(error => {
+                console.error("Erro na solicitação:", error);
+            });
+
+        document.querySelector("#janelaCriar").classList.add("ocultar")
+        location.reload()
+    }
+});
+
+document.querySelector("#btn_cancelar").addEventListener("click", (evt) => {
+    document.querySelector("#janelaEdit").classList.add("ocultar")
+})
+
+
 
 /* <div class="dgvLinha">
     <div class="item c1">01</div>
