@@ -128,6 +128,37 @@
     cursor: pointer;
 }
 
+.rodape_editar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rodape_editar button {
+    color: #fff;
+    width: 45%;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rodape_editar .btn_cancelar {
+    background-color: rgb(201, 45, 45);
+}
+
+.rodape_editar .btn_cancelar:hover {
+    background-color: rgb(179, 40, 40);
+}
+
+.rodape_editar .btn_salvar {
+    background-color: rgb(48, 148, 53);
+}
+
+.rodape_editar .btn_salvar:hover {
+    background-color: rgb(40, 124, 44);
+}
+
 .ocultar {
     display: none;
 }

@@ -42,7 +42,7 @@ const dataGridView = (config) => {
                     const endpoint = `http://127.0.0.1:1880/removeproduto/${id}`;
                     fetch(endpoint)
                         .then(res => {
-                            if(res.status == 200){
+                            if (res.status == 200) {
                                 linha.remove()
                             }
                         })
@@ -51,6 +51,19 @@ const dataGridView = (config) => {
                 const iconEdit = document.createElement("img")
                 iconEdit.setAttribute("class", "dgvIcone")
                 iconEdit.setAttribute("src", "./icons/edit.svg")
+
+                iconEdit.addEventListener("click", (evt) => {
+                    document.querySelector("#janelaEdit").classList.remove("ocultar")
+                    const id = el.n_id_produto;
+                    const produto = el.s_nome_produto;
+                    const marca = el.s_marca_produto;
+                    const modelo = el.s_modelo_produto;
+
+                    document.querySelector("#f_id_editar").value = id;
+                    document.querySelector("#f_produto_editar").value = produto;
+                    document.querySelector("#f_marca_editar").value = marca;
+                    document.querySelector("#f_modelo_editar").value = modelo;
+                })
 
                 const iconView = document.createElement("img")
                 iconView.setAttribute("class", "dgvIcone")
@@ -87,6 +100,22 @@ dataGridView(configDataGridView)
 
 document.querySelector("#btn_ok").addEventListener("click", (evt) => {
     document.querySelector("#janelaView").classList.add("ocultar")
+})
+
+document.querySelector("#btn_salvar").addEventListener("click", (evt) => {
+    const id = document.querySelector("#f_id_editar").value;
+    const produto = document.querySelector("#f_produto_editar").value;
+    const marca = document.querySelector("#f_marca_editar").value;
+    const modelo = document.querySelector("#f_modelo_editar").value;
+
+    const endpoint = `http://127.0.0.1:1880/editarproduto/${id}/${produto}/${marca}/${modelo}`;
+
+    fetch(endpoint)
+        .then(res => {
+            console.log(res.status)
+        })
+    document.querySelector("#janelaEdit").classList.add("ocultar")
+    location.reload()
 })
 
 
