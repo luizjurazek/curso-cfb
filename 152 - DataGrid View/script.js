@@ -34,13 +34,17 @@ const dataGridView = (config) => {
                 const iconDelete = criarIconesElementos("./icons/delete.svg", (evt) => {
                     const id = el.n_id_produto;
                     const linha = evt.target.parentNode.parentNode;
-                    const endpoint = `http://127.0.0.1:1880/removeproduto/${id}`;
+                    const endpoint = `http://127.0.0.1:3000/removerproduto/${id}`;
                     fetch(endpoint)
                         .then(res => {
                             if (res.status == 200) {
                                 linha.remove()
+                            } else {
+                                throw new Error('Erro na solicitação')
                             }
+                            return res.json()
                         })
+                        alert(`Produto de id ${id} removido com sucesso!`)
                 })
 
                 // Editar produto na Janela
@@ -157,7 +161,7 @@ document.querySelector("#btn_criar_elemento").addEventListener("click", (evt) =>
         };
 
         // Especifique o URL do endpoint de destino
-        const endpoint = "http://127.0.0.1:1880/criarproduto";
+        const endpoint = "http://127.0.0.1:3000/criarproduto";
 
         // Realize a solicitação POST
         fetch(endpoint, requestOptions)

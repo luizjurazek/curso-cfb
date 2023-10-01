@@ -1,10 +1,14 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const cors = require('cors')
 const dbConnection = require('./connection.js'); // Import the connection pool from db.js
+const port = 3000
 
 app.use(cors())
-const port = 3000
+app.use(bodyParser.json())
+
+
 
 // Now you can use dbConnection to interact with the database
 // async function queryDatabase() {
@@ -37,6 +41,27 @@ async function getProduto(idProduto){
     }
 }
 
+// Remover produto
+async function removeProduto(idProduto){
+    try {
+        const [produto] = await dbConnection.execute(`DELETE FROM produto WHERE n_id_produto = ${ idProduto }`)
+        console.log(produto)
+        return produto
+    } catch (error){
+        console.log(`Error: ${error}`)
+    }
+}
+
+async function criarProduto(produto, marca, modelo){
+    try {
+        const novoProduto = await dbConnection.execute(`INSERT INTO produto(s_nome_produto, s_marca_produto, s_modelo_produto) VALUES ('${produto}', '${marca}', '${modelo}')`);
+        console.log(novoProduto)
+        return novoProduto
+    } catch (error){
+        console.log(`Error: ${error}`)
+    }
+}
+
 // Rota produtos -> retorna um array com todos os produtos do bd
 app.get('/produtos', async (req, res) => {
     const query = await getAllProdutos()
@@ -50,10 +75,21 @@ app.get('/getproduto/:id', async (req, res) =>{
     res.send(query)
 })
 
+// Remover produto
+app.get('/removerproduto/:id', async (req, res) =>{
+    const id = req.params.id
+    const query = await removeProduto(id)
+    res.send(query)
+})
 
-
-
-
+// Criar produto 
+app.post('/criarproduto', async (req, res) =>{
+    let produto = req.body.produto
+    let marca = req.body.marca   
+    let modelo = req.body.modelo
+    const novoProduto = await criarProduto(produto, marca, modelo)
+    res.send(novoProduto)
+})
 
 
 app.listen(port, () => {
