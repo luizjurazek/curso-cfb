@@ -18,25 +18,39 @@ const port = 3000
 // }
 
 // Get all products 
-async function getProdutos(){
+async function getAllProdutos(){
     try {
         const [rows] = await dbConnection.execute('SELECT * FROM produto')
         return rows
-        // console.log("Produtos: " + rows)
     } catch (error){
-        console.log("Error: " + error)
+        console.log(`Error: ${error}`)
     }
 }
 
-// app.get('/', async (req, res) => {
-//     const query = await queryDatabase()
-//     res.send(query)
-// })
+// Get um produto em especifico 
+async function getProduto(idProduto){
+    try {
+        const [produto] = await dbConnection.execute(`SELECT * FROM produto WHERE n_id_produto = ${ idProduto }`)
+        return produto
+    } catch (error){
+        console.log(`Error: ${error}`)
+    }
+}
 
+// Rota produtos -> retorna um array com todos os produtos do bd
 app.get('/produtos', async (req, res) => {
-    const query = await getProdutos()
+    const query = await getAllProdutos()
     res.send(query)
 })
+
+// Rota produto -> retorna o produto em especifico
+app.get('/getproduto/:id', async (req, res) =>{
+    const id = req.params.id;
+    const query = await getProduto(id)
+    res.send(query)
+})
+
+
 
 
 

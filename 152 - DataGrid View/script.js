@@ -1,5 +1,5 @@
 const configDataGridView = {
-    endpoint: "http://127.0.0.1:1880/produtos",
+    endpoint: "http://127.0.0.1:3000/produtos",
     idDestino: "dgvDados"
 }
 
@@ -7,36 +7,31 @@ const dataGridView = (config) => {
     const dgvDados = document.getElementById(config.idDestino)
     dgvDados.innerHTML = ""
     fetch(config.endpoint)
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Erro na solicitação')
+            }
+            return res.json()
+        })
         .then(res => {
             res.forEach((el) => {
                 const dgvLinha = document.createElement("div")
                 dgvLinha.setAttribute("class", "dgvLinha")
 
-                const c1 = document.createElement("div")
-                c1.setAttribute("class", "item c1")
-                c1.innerHTML = el.n_id_produto
+                const c1 = criarElemento("div", "item c1", el.n_id_produto)
                 dgvLinha.appendChild(c1)
 
-                const c2 = document.createElement("div")
-                c2.setAttribute("class", "item c2")
-                c2.innerHTML = el.s_nome_produto
+                const c2 = criarElemento("div", "item c2", el.s_nome_produto)
                 dgvLinha.appendChild(c2)
 
-                const c3 = document.createElement("div")
-                c3.setAttribute("class", "item c3")
-                c3.innerHTML = el.s_marca_produto
+                const c3 = criarElemento("div", "item c3", el.s_marca_produto)
                 dgvLinha.appendChild(c3)
 
-                const c4 = document.createElement("div")
-                c4.setAttribute("class", "item c4")
-                c4.innerHTML = el.s_modelo_produto
+                const c4 = criarElemento("div", "item c4", el.s_modelo_produto)
                 dgvLinha.appendChild(c4)
 
-                const iconDelete = document.createElement("img")
-                iconDelete.setAttribute("class", "dgvIcone")
-                iconDelete.setAttribute("src", "./icons/delete.svg")
-                iconDelete.addEventListener("click", (evt) => {
+                // Deletar item no banco de dados
+                const iconDelete = criarIconesElementos("./icons/delete.svg", (evt) => {
                     const id = el.n_id_produto;
                     const linha = evt.target.parentNode.parentNode;
                     const endpoint = `http://127.0.0.1:1880/removeproduto/${id}`;
@@ -48,11 +43,8 @@ const dataGridView = (config) => {
                         })
                 })
 
-                const iconEdit = document.createElement("img")
-                iconEdit.setAttribute("class", "dgvIcone")
-                iconEdit.setAttribute("src", "./icons/edit.svg")
-
-                iconEdit.addEventListener("click", (evt) => {
+                // Editar produto na Janela
+                const iconEdit = criarIconesElementos("./icons/edit.svg", (evt) => {
                     document.querySelector("#janelaEdit").classList.remove("ocultar")
                     const id = el.n_id_produto;
                     const produto = el.s_nome_produto;
@@ -65,15 +57,20 @@ const dataGridView = (config) => {
                     document.querySelector("#f_modelo_editar").value = modelo;
                 })
 
+                // Visualizar produto na janela
                 const iconView = document.createElement("img")
-                iconView.setAttribute("class", "dgvIcone")
                 iconView.setAttribute("src", "./icons/visibility.svg")
                 iconView.addEventListener("click", (evt) => {
                     document.querySelector("#janelaView").classList.remove("ocultar")
                     const id = el.n_id_produto;
-                    const endpoint = `http://127.0.0.1:1880/getproduto/${id}`;
+                    const endpoint = `http://127.0.0.1:3000/getproduto/${id}`;
                     fetch(endpoint)
-                        .then(res => res.json())
+                        .then(res => {
+                            if (!res.ok) {
+                                throw new Error('Erro na solicitação')
+                            }
+                            return res.json()
+                        })
                         .then(res => {
                             console.log(res)
                             document.querySelector("#f_id").value = res[0].n_id_produto;
@@ -84,32 +81,27 @@ const dataGridView = (config) => {
                         })
                 })
 
-                const c5 = document.createElement("div")
-                c5.setAttribute("class", "item c5")
+                const c5 = criarElemento("div", "item c5", null)
                 c5.append(iconView, iconEdit, iconDelete)
                 dgvLinha.appendChild(c5)
 
-
                 dgvDados.appendChild(dgvLinha)
             })
-            console.log(res)
+        })
+        .catch(error => {
+            console.log("Erro na requisição: " + error)
         })
 }
 
 dataGridView(configDataGridView)
 
-document.querySelector("#btn_ok").addEventListener("click", (evt) => {
-    document.querySelector("#janelaView").classList.add("ocultar")
-})
-
+// Salvar edição no produto
 document.querySelector("#btn_salvar").addEventListener("click", (evt) => {
     const id = document.querySelector("#f_id_editar").value;
     const produto = document.querySelector("#f_produto_editar").value;
     const marca = document.querySelector("#f_marca_editar").value;
     const modelo = document.querySelector("#f_modelo_editar").value;
-
     const endpoint = `http://127.0.0.1:1880/editarproduto/${id}/${produto}/${marca}/${modelo}`;
-
     fetch(endpoint)
         .then(res => {
             console.log(res.status)
@@ -118,20 +110,34 @@ document.querySelector("#btn_salvar").addEventListener("click", (evt) => {
     location.reload()
 })
 
-document.querySelector("#btn_criar_element").addEventListener("click", (evt) => {
-    document.querySelector("#janelaCriar").classList.remove("ocultar")
+// Fechar o janela view
+document.querySelector("#btn_ok").addEventListener("click", (evt) => {
+    document.querySelector("#janelaView").classList.add("ocultar")
 })
 
+// Fechar o janela edit
+document.querySelector("#btn_cancelar").addEventListener("click", (evt) => {
+    document.querySelector("#janelaEdit").classList.add("ocultar")
+})
+
+// Fechar o Janela criar
 document.querySelector("#btn_cancelar_criar").addEventListener("click", (evt) => {
     document.querySelector("#janelaCriar").classList.add("ocultar")
 })
 
+// Fechar o janela criar
+document.querySelector("#btn_criar_element").addEventListener("click", (evt) => {
+    document.querySelector("#janelaCriar").classList.remove("ocultar")
+})
+
+
+// Criar elemento 
 document.querySelector("#btn_criar_elemento").addEventListener("click", (evt) => {
     const produto = document.getElementById("f_produto_criar").value;
     const marca = document.getElementById("f_marca_criar").value;
     const modelo = document.getElementById("f_modelo_criar").value;
 
-    if (produto == "" || marca == "" || modelo == ""){
+    if (produto == "" || marca == "" || modelo == "") {
         alert("Preencha todos os itens")
     } else {
         // Criar um objeto com os dados a serem enviados no corpo da solicitação
@@ -171,16 +177,20 @@ document.querySelector("#btn_criar_elemento").addEventListener("click", (evt) =>
     }
 });
 
-document.querySelector("#btn_cancelar").addEventListener("click", (evt) => {
-    document.querySelector("#janelaEdit").classList.add("ocultar")
-})
+// Funções auxiliares
+// Criar elementos da tabela
+function criarElemento(tipoElemento, classes, conteudo) {
+    const el = document.createElement(tipoElemento)
+    el.setAttribute("class", classes)
+    el.innerHTML = conteudo
+    return el
+}
 
-
-
-/* <div class="dgvLinha">
-    <div class="item c1">01</div>
-    <div class="item c2">Processador</div>
-    <div class="item c3">Intel</div>
-    <div class="item c4">i7</div>
-    <div class="item c5">D - E - V</div>
-</div> */
+// Criar icones dos elementos
+function criarIconesElementos(src, clickHandler) {
+    const icon = document.createElement("img")
+    icon.setAttribute("class", "dgvIcone")
+    icon.setAttribute("src", src)
+    icon.addEventListener("click", clickHandler)
+    return icon
+}
