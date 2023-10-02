@@ -45,18 +45,28 @@ async function getProduto(idProduto){
 async function removeProduto(idProduto){
     try {
         const [produto] = await dbConnection.execute(`DELETE FROM produto WHERE n_id_produto = ${ idProduto }`)
-        console.log(produto)
+        // console.log(produto)
         return produto
     } catch (error){
         console.log(`Error: ${error}`)
     }
 }
 
+// Criar produtos
 async function criarProduto(produto, marca, modelo){
     try {
         const novoProduto = await dbConnection.execute(`INSERT INTO produto(s_nome_produto, s_marca_produto, s_modelo_produto) VALUES ('${produto}', '${marca}', '${modelo}')`);
-        console.log(novoProduto)
         return novoProduto
+    } catch (error){
+        console.log(`Error: ${error}`)
+    }
+}
+
+// Editar produtos
+async function editarProduto(id, produto, marca, modelo){
+    try {
+        const produtoEditado = await dbConnection.execute(`UPDATE produto SET n_id_produto=${id},s_nome_produto="${produto}",s_marca_produto="${marca}",s_modelo_produto="${modelo}" WHERE n_id_produto = ${id}`);
+        return produtoEditado
     } catch (error){
         console.log(`Error: ${error}`)
     }
@@ -89,6 +99,15 @@ app.post('/criarproduto', async (req, res) =>{
     let modelo = req.body.modelo
     const novoProduto = await criarProduto(produto, marca, modelo)
     res.send(novoProduto)
+})
+
+app.get('/editarproduto/:id/:produto/:marca/:modelo', async (req, res) =>{
+    let id = req.params.id
+    let produto = req.params.produto
+    let marca = req.params.marca
+    let modelo = req.params.modelo
+    const query = await editarProduto(id, produto, marca, modelo)
+    res.send(query)
 })
 
 
