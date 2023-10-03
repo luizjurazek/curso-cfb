@@ -105,7 +105,7 @@ document.querySelector("#btn_salvar").addEventListener("click", (evt) => {
     const produto = document.querySelector("#f_produto_editar").value;
     const marca = document.querySelector("#f_marca_editar").value;
     const modelo = document.querySelector("#f_modelo_editar").value;
-    const endpoint = `http://127.0.0.1:1880/editarproduto/${id}/${produto}/${marca}/${modelo}`;
+    const endpoint = `http://127.0.0.1:3000/editarproduto/${id}/${produto}/${marca}/${modelo}`;
     fetch(endpoint)
         .then(res => {
             console.log(res.status)
