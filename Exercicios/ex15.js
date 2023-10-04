@@ -3,7 +3,11 @@
 // chão, e que você lembre da sua altura, faça um programa para ler os dados necessários e
 // calcular a altura do prédio.
 
-function calcularAlturaPredio(altura){
-    let minhaAltura = altura
-    let al
+// Calcula a altura do prédio usando a proporção entre as sombras e as alturas
+function calcAlturaPredio(altPessoa, sombPredio, sombPessoa){
+    let alturaPredio = (altPessoa * sombPredio) / sombPessoa;
+    console.log("A altura estimada do prédio é de aproximadamente " + alturaPredio.toFixed(2) + " metros.");
 }
+
+calcAlturaPredio(20, 12, 1.67)
+
